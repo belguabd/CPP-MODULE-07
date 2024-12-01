@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:22:58 by belguabd          #+#    #+#             */
-/*   Updated: 2024/11/18 14:02:19 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/12/01 18:03:54 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,28 @@ int main()
 {
     try
     {
-        Array<int> arr(10);
-        arr[11] = 42; // Modify the first element
-        std::cout << arr[0] << "\n"
-                  << "the size is " << arr.size() << std::endl; // Access and print the first element
+
+        Array<int> arr_i(2);
+        arr_i[0] = 1;
+        arr_i[1] = 2;
+        std::cout << "int array:" << std::endl;
+        for (size_t i = 0; i < arr_i.size(); i++)
+            std::cout << arr_i[i] << std::endl;
+        Array<int> copy_i(arr_i);
+        std::cout << "copy of int array:" << std::endl;
+        for (size_t i = 0; i < copy_i.size(); i++)
+            std::cout << copy_i[i] << std::endl;
+        Array<int> assign_i(2);
+        assign_i = arr_i;
+        std::cout << "assigned int array:" << std::endl;
+        for (size_t i = 0; i < assign_i.size(); i++)
+            std::cout << assign_i[i] << std::endl;
+        std::cout << "out of bound access:" << std::endl;
+        std::cout << arr_i[2] << std::endl;
+        
     }
     catch (const std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
 }

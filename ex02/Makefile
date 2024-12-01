@@ -13,7 +13,7 @@ all : $(NAME)
 $(NAME) :$(OBJ)
 	$(FLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp Array.hpp
 	$(FLAGS) -c $< -o $@
 
 clean:

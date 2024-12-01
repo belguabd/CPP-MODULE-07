@@ -6,72 +6,90 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:38:20 by belguabd          #+#    #+#             */
-/*   Updated: 2024/11/18 13:57:17 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/12/01 18:04:54 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
+
 #include <iostream>
 
-template <typename T>
+template <class T>
 
 class Array
 {
 private:
-    T* data;
+    T *data;
     size_t length;
 
 public:
-    Array() : data(NULL), length(0) {}
+    Array();
+    Array(unsigned int n);
+    Array(const Array<T> &other);
+    Array<T> &operator=(const Array<T> &other); 
+    ~Array();
 
-    Array(unsigned int n) : length(n)
+    size_t size() const;
+
+    T &operator[](size_t index);
+    const T &operator[](size_t index) const;
+};
+
+template <class T> 
+Array<T>::Array() : data(NULL), length(0) {}
+
+template <class T>
+Array<T>::Array(unsigned int n) : length(n)
+{
+    data = new T[length];
+    length = n;
+}
+
+template <class T>
+Array<T>::Array(const Array<T> &other) : length(other.length)
+{
+    data = new T[length];
+    for (size_t i = 0; i < length; i++)
     {
-        if (length)
-        {
-            data = new T[length];
-            for (size_t i = 0; i < length; i++)
-            {
-                data[i] = T();
-            }
-        }
+        data[i] = other.data[i];
     }
-    Array(const Array<T> &other) : length(other.length)
+}
+
+template <class T>
+Array<T> &Array<T>::operator=(const Array<T> &other)
+{
+    if (this != &other)
     {
-        data = new T[length];
+        delete[] data;
+        data = new T[other.length];
         for (size_t i = 0; i < length; i++)
         {
             data[i] = other.data[i];
         }
     }
+    return (*this);
+}
 
-    Array<T> &operator=(const Array<T> &other)
-    {
-        if (this != &other)
-        {
-            delete[] data;
-            data = new T[other.length];
-            for (size_t i = 0; i < length; i++)
-            {
-                data[i] = other.data[i];
-            }
-        }
-        return (*this);
-    }
-    size_t size() { return this->length; }
+template <class T>
+size_t Array<T>::size() const { return this->length; }
 
-    T& operator[](size_t index)
-    {
-        if (index >= length)
-            throw (std::exception());
-        return data[index];
-    }
-    const T &operator[](size_t index) const
-    {
-        if (index >= length)
-            throw (std::exception());
-        return data[index];
-    }
-    ~Array()
-    {
-        delete[] data;
-    }
-};
+template <class T>
+T &Array<T>::operator[](size_t index)
+{
+    if (index >= length)
+        throw(std::out_of_range("Index out of range"));
+    return data[index];
+}
+
+template <class T>
+const T &Array<T>::operator[](size_t index) const
+{
+    if (index >= length)
+        throw(std::out_of_range("Index out of range"));
+    return data[index];
+}
+template <class T>
+Array<T>::~Array() { delete[] data; }
+
+#endif

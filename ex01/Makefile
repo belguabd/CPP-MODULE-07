@@ -1,6 +1,6 @@
 FLAGS=c++ -Wextra -Wall -Werror -std=c++98
 
-NAME=template
+NAME=ex01
 
 SRC=main.cpp
 
@@ -13,7 +13,7 @@ all : $(NAME)
 $(NAME) :$(OBJ)
 	$(FLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.cpp
+%.o:%.cpp iter.hpp
 	$(FLAGS) -c $< -o $@
 
 clean:

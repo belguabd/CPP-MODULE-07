@@ -6,11 +6,12 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:22:58 by belguabd          #+#    #+#             */
-/*   Updated: 2024/12/01 18:03:54 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/12/03 09:19:19 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
+#include <iostream>
 
 int main()
 {
@@ -34,7 +35,7 @@ int main()
             std::cout << assign_i[i] << std::endl;
         std::cout << "out of bound access:" << std::endl;
         std::cout << arr_i[2] << std::endl;
-        
+
     }
     catch (const std::exception &e)
     {

@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 18:38:20 by belguabd          #+#    #+#             */
-/*   Updated: 2024/12/01 18:04:54 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:34:13 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ template <class T>
 class Array
 {
 private:
-    T *data;
+    T       *data;
     size_t length;
 
 public:
@@ -89,6 +89,7 @@ const T &Array<T>::operator[](size_t index) const
         throw(std::out_of_range("Index out of range"));
     return data[index];
 }
+
 template <class T>
 Array<T>::~Array() { delete[] data; }
 

@@ -1,6 +1,6 @@
 FLAGS=c++ -Wextra -Wall -Werror -std=c++98
 
-NAME=array
+NAME=ex02
 
 SRC=main.cpp
 
